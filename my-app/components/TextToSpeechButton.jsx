@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-export default function TextToSpeechButton() {
+export default function TextToSpeechButton({ updateMessage }) {
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
   const rec = useRef(new SpeechRecognition());
@@ -24,6 +24,8 @@ export default function TextToSpeechButton() {
     mic.onerror = (event) => {
       console.log(event.error);
     };
+
+    console.log(answer);
   };
 
   useEffect(() => {
@@ -33,19 +35,23 @@ export default function TextToSpeechButton() {
     } else {
       mic.stop();
       console.log("stopped");
+      updateMessage(answer);
     }
   }, [micOn]);
 
   return (
-    <button
-      onClick={() => setmicOn(!micOn)}
-      className={
-        micOn
-          ? "w-full px-4 text-white bg-red-500 rounded-md"
-          : "w-full px-4 text-white bg-blue-500 rounded-md"
-      }
-    >
-      {micOn ? "Stop" : "Start"}
-    </button>
+    <div>
+      <button
+        onClick={() => setmicOn(!micOn)}
+        className={
+          micOn
+            ? "w-full px-4 text-white bg-red-500 rounded-md"
+            : "w-full px-4 text-white bg-blue-500 rounded-md"
+        }
+      >
+        {micOn ? "Stop" : "Start"}
+      </button>
+      <h1>{answer}</h1>
+    </div>
   );
 }
