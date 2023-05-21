@@ -2,6 +2,7 @@
 
 import React from "react";
 import ChatBubble from "./ChatBubble";
+import TextToSpeechButton from "./TextToSpeechButton";
 import { useState } from "react";
 import { BiMessage } from "react-icons/Bi";
 
@@ -25,18 +26,101 @@ function ChatBar() {
       setCurrentMessage("");
     }
   };
+
+
   return (
     <div className="w-3/12 bg-gray-200 m-12 rounded-md">
       <div class="h-screen flex flex-col">
         <div className="flex flex-1 overflow-y-scroll max-h-[calc(100vh-8rem)] flex-col p-10">
-          <div className="flex items-center gap-3 pb-4">
-            <BiMessage size={40} />
-            <h1 className="font-bold">Chat</h1>
+          <div className="flex-grow items-center gap-3 pb-4">
+            <div className="flex items-center gap-4">
+              <BiMessage size={40} />
+              <h1 className="font-bold">Chat</h1>
+            </div>
+            <div>
+              {/* <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+              <ChatBubble
+                user={true}
+                text={
+                  "dfghajsk dvhjaskhlf jbvaslhkfj  hvaslhfjbhbjask ljbfjka jlshbflj ahsb"
+                }
+              />
+             */}
+            </div>
+
+            {currentMessages.map(({ user, text }) => {
+              return <ChatBubble user={user} text={text} />;
+            })}
           </div>
           {/* <!-- Chat messages go here --> */}
-          {currentMessages.map(({ user, text }) => {
-            return <ChatBubble user={user} text={text} />;
-          })}
+          <div class="sticky bottom-0">
+            <TextToSpeechButton {updateMessages}/>
+          </div>
         </div>
         <div class="bg-white pb-4">
           <div class="flex">
