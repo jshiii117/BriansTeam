@@ -6,11 +6,11 @@ import TextToSpeechButton from "./TextToSpeechButton";
 import { useState } from "react";
 import { BiMessage } from "react-icons/Bi";
 import { getVideo } from "../api/api";
-import { v4 as uuidv4 } from "uuid";
 
 function ChatBar({ updateResult, image, startMessage, voiceId }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [gptMessages, setGptMessages] = useState(startMessage);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setCurrentMessage(e.target.value);
@@ -23,6 +23,8 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
         role: "user",
         content: currentMessage,
       };
+      setCurrentMessage("");
+      setIsLoading(!isLoading);
       const newMessages = [...gptMessages, message];
       setGptMessages([...gptMessages, message]);
       const result = await getVideo(newMessages, image, voiceId);
@@ -31,7 +33,7 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
       console.log(updatedMessages);
       setGptMessages([...newMessages, updatedMessages]);
       updateResult(video);
-      setCurrentMessage("");
+      setIsLoading(!isLoading);
     }
   };
 
@@ -54,6 +56,13 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+      console.log("Enter key pressed");
+    }
+  };
+
   return (
     <div className="w-3/12 bg-gray-200 m-12 rounded-md">
       <div className="h-screen flex flex-col">
@@ -67,7 +76,7 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
 
             {gptMessages
               .map(({ role, content }) => {
-                return <ChatBubble key={uuidv4()} user={role} text={content} />;
+                return <ChatBubble user={role} text={content} />;
               })
               .slice(1)}
           </div>
@@ -84,6 +93,8 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
               className="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={currentMessage}
               onChange={handleInputChange}
+              onKeyDown={handleKeyPress}
+              disabled={isLoading}
             />
             <button
               className="px-4 text-white bg-blue-500 rounded-r-md"
