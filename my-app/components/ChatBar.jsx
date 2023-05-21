@@ -5,7 +5,7 @@ import ChatBubble from "./ChatBubble";
 import TextToSpeechButton from "./TextToSpeechButton";
 import { useState } from "react";
 import { BiMessage } from "react-icons/Bi";
-import { getVideo } from "../api";
+import { getVideo } from "../api/api";
 
 function ChatBar({ updateResult }) {
   const [currentMessage, setCurrentMessage] = useState("");
