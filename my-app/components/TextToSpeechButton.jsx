@@ -11,6 +11,7 @@ export default function TextToSpeechButton({ updateMessage }) {
   // mic.interimResults = false;
 
   const [micOn, setmicOn] = useState(false);
+  // @todo: stop default state "" from showing
   const [answer, setAnswer] = useState("");
 
   useEffect(() => {
