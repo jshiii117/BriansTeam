@@ -1,9 +1,9 @@
 import React from "react";
 
-function ChatBubble({ props }) {
+function ChatBubble({ user, text }) {
   return (
-    <div class="inline-block bg-gray-300 rounded-lg px-4 py-2">
-      <p class="m-0">This is the content of the chat message.</p>
+    <div class="inline-block bg-gray-300 rounded-lg px-4 py-2 m-1 max-w-xs">
+      <p class="m-0">{text}</p>
     </div>
   );
 }
