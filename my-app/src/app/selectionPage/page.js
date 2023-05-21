@@ -31,7 +31,7 @@ export default function SelectionPage(){
                     <div className='grayBar'></div>
 
                 
-                    <a href='/' className='leftChatBTN'>
+                    <a href='/elonPage' className='leftChatBTN'>
                         <div >
                             Chat With Elon
                         </div>

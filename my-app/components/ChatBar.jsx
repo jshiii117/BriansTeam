@@ -119,7 +119,6 @@ function ChatBar() {
           </div>
           {/* <!-- Chat messages go here --> */}
           <div class="sticky bottom-0">
-            <TextToSpeechButton {updateMessages}/>
           </div>
         </div>
         <div class="bg-white pb-4">
