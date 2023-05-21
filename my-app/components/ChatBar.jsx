@@ -8,9 +8,9 @@ import { BiMessage } from "react-icons/Bi";
 import { getVideo } from "../api/api";
 import { v4 as uuidv4 } from "uuid";
 
-function ChatBar({ updateResult }) {
+function ChatBar({ updateResult, image, startMessage, voiceId }) {
   const [currentMessage, setCurrentMessage] = useState("");
-  const [gptMessages, setGptMessages] = useState([]);
+  const [gptMessages, setGptMessages] = useState(startMessage);
 
   const handleInputChange = (e) => {
     setCurrentMessage(e.target.value);
@@ -24,16 +24,18 @@ function ChatBar({ updateResult }) {
         content: currentMessage,
       };
       const newMessages = [...gptMessages, message];
-      postMessage(newMessages);
       setGptMessages([...gptMessages, message]);
+      const result = await getVideo(newMessages, image, voiceId);
+      const video = result.video;
+      const updatedMessages = result.gptMessages[0].message;
+      console.log(updatedMessages);
+      setGptMessages([...newMessages, updatedMessages]);
+      updateResult(video);
       setCurrentMessage("");
-      const result = await getVideo();
-      console.log(`Result: ${result}`);
-      updateResult(result);
     }
   };
 
-  const updateMessages = (user_input) => {
+  const updateMessages = async (user_input) => {
     if (user_input !== "") {
       console.log(user_input);
       const message = {
@@ -41,8 +43,14 @@ function ChatBar({ updateResult }) {
         content: user_input,
       };
       const newMessages = [...gptMessages, message];
-      postMessage(newMessages);
       setGptMessages([...gptMessages, message]);
+      const result = await getVideo(newMessages, image, voiceId);
+      const video = result.video;
+      const updatedMessages = result.gptMessages[0].message;
+      console.log(updatedMessages);
+      setGptMessages([...newMessages, updatedMessages]);
+      updateResult(video);
+      setCurrentMessage("");
     }
   };
 
@@ -57,9 +65,11 @@ function ChatBar({ updateResult }) {
             </div>
             {/* @todo: fix styling of each ChatBubble */}
 
-            {gptMessages.map(({ role, content }) => {
-              return <ChatBubble key={uuidv4()} user={role} text={content} />;
-            })}
+            {gptMessages
+              .map(({ role, content }) => {
+                return <ChatBubble key={uuidv4()} user={role} text={content} />;
+              })
+              .slice(1)}
           </div>
           {/* <!-- Chat messages go here --> */}
           <div className="sticky bottom-0">

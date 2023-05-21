@@ -1,22 +1,11 @@
 "use client";
 
-const gptMessages = [
-  {
-    role: "user",
-    content:
-      "You are going to roleplay as Elon Musk and we will have a conversation, rely on your past history when we have this conversation, talk in the first person please. You do not need to state that you are talking as Elon. Only respond to one of my messages at a time with one answer. Do not act as both sides of the conversation. Please limit your responses to a maximum of four sentences. ",
-  },
-  { role: "assistant", content: "Hello I'm Elon, how are you?" },
-  {
-    role: "user",
-    content: "Hi Elon, what companies have you founded?",
-  },
-];
-const imageFile = "https://i.imgur.com/fhrwAgp.png";
-
-const getVideo = async (gptMessages) => {
-  const gptResponse = await postMessage(gptMessages);
-  const videoId = await createVideo(gptResponse);
+const getVideo = async (gptMessages, image, voiceId) => {
+  console.log(`Messages in getVideo: ${gptMessages}`);
+  const allGptMessage = await postMessage(gptMessages);
+  const latestGptMessage =
+    allGptMessage[allGptMessage.length - 1].message.content;
+  const videoId = await createVideo(latestGptMessage, image, voiceId);
   console.log(`VideoId: ${videoId}`);
 
   if (videoId != "") {
@@ -25,8 +14,7 @@ const getVideo = async (gptMessages) => {
         method: "GET",
         headers: {
           accept: "application/json",
-          authorization:
-            "Basic YTJWMmFXNHlNREV5ZEdGdVFHZHRZV2xzTG1OdmJRIDpDUGx6THBSd0ROblZiblluZVcwenk=",
+          authorization: process.env.NEXT_PUBLIC_DIDI_API_KEY,
         },
       });
 
@@ -35,7 +23,7 @@ const getVideo = async (gptMessages) => {
       if (response.ok) {
         console.log("GetVideo");
         console.log(result);
-        return result["result_url"];
+        return { video: result["result_url"], gptMessages: allGptMessage };
       }
     } catch (error) {
       alert(`GetVideo: ${error.message}`);
@@ -45,7 +33,7 @@ const getVideo = async (gptMessages) => {
   }
 };
 
-const postMessage = async ({ gptMessages }) => {
+const postMessage = async (gptMessages) => {
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       body: JSON.stringify({
@@ -55,8 +43,7 @@ const postMessage = async ({ gptMessages }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        Authorization:
-          "Bearer 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",
+        authorization: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
       },
     });
     const result = await response.json();
@@ -64,31 +51,32 @@ const postMessage = async ({ gptMessages }) => {
       console.log("PostMessage:");
       console.log(result);
       console.log(result.choices);
-      const latestMessage =
-        result.choices[result.choices.length - 1].message.content;
-      return latestMessage;
+      // const latestMessage =
+      //   result.choices[result.choices.length - 1].message.content;
+      // return latestMessage;
+      const allMessages = result.choices;
+      return allMessages;
     }
   } catch (error) {
     alert(`PostMessage: ${error.message}`);
   }
 };
 
-const createVideo = async (text) => {
+const createVideo = async (text, image, voiceId) => {
   try {
     const response = await fetch("https://api.d-id.com/talks", {
       method: "POST",
       headers: {
         accept: "application/json",
         "content-type": "application/json",
-        authorization:
-          "Basic YTJWMmFXNHlNREV5ZEdGdVFHZHRZV2xzTG1OdmJRIDpDUGx6THBSd0ROblZiblluZVcwenk=",
+        authorization: process.env.NEXT_PUBLIC_DIDI_API_KEY,
       },
       body: JSON.stringify({
-        source_url: imageFile,
+        source_url: image,
         script: {
           type: "text",
           subtitles: "false",
-          provider: { type: "microsoft", voice_id: "en-US-JennyNeural" },
+          provider: { type: "microsoft", voice_id: voiceId },
           input: text,
         },
         config: { fluent: "false", pad_audio: "0.0", stitch: true },
@@ -99,8 +87,15 @@ const createVideo = async (text) => {
     if (response.ok) {
       console.log("CreateVideo");
       console.log(result);
-      const delay = () => new Promise((resolve) => setTimeout(resolve, 30000));
+      const delay = () => new Promise((resolve) => setTimeout(resolve, 20000));
       await delay();
+      if (result.duration >= 16) {
+        console.log("Hello Im running another delay");
+        const delay = () =>
+          new Promise((resolve) => setTimeout(resolve, 15000));
+        await delay();
+        console.log("Delay ended");
+      }
       return result.id;
     }
   } catch (error) {

@@ -3,16 +3,11 @@
 import React from "react";
 import ReactPlayer from "react-player/lazy";
 
-function VideoPlayer({ result }) {
+function VideoPlayer({ result, image }) {
   return (
     <div className="w-9/12 bg-red-300">
       {result === "" ? (
-        <img
-          src="https://i.imgur.com/fhrwAgp.png"
-          alt="Placeholder AI Elon Musk"
-          width="650px"
-          height="650px"
-        />
+        <img src={image} alt="AI Character" width="650px" height="650px" />
       ) : (
         <ReactPlayer url={result} width="650px" height="650px" playing />
       )}
