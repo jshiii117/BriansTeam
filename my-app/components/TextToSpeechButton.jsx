@@ -13,19 +13,21 @@ export default function TextToSpeechButton({ updateMessage }) {
   const [micOn, setmicOn] = useState(false);
   const [answer, setAnswer] = useState("");
 
+  useEffect(() => {
+    updateMessage(answer);
+  }, [answer]);
+
   mic.onresult = (event) => {
     const transcript = Array.from(event.results)
       .map((result) => result[0])
       .map((result) => result.transcript)
       .join("");
 
-    setAnswer(transcript);
-
     mic.onerror = (event) => {
       console.log(event.error);
     };
 
-    console.log(answer);
+    setAnswer(transcript);
   };
 
   useEffect(() => {
@@ -35,12 +37,11 @@ export default function TextToSpeechButton({ updateMessage }) {
     } else {
       mic.stop();
       console.log("stopped");
-      updateMessage(answer);
     }
   }, [micOn]);
 
   return (
-    <div>
+    <div className="flex-col">
       <button
         onClick={() => setmicOn(!micOn)}
         className={
