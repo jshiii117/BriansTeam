@@ -27,6 +27,15 @@ function ChatBar() {
     }
   };
 
+  const updateMessages = (user_input) => {
+    console.log(user_input);
+    const message = {
+      user: true,
+      id: currentMessages.length,
+      text: user_input,
+    };
+    setCurrentMessages([...currentMessages, message]);
+  };
 
   return (
     <div className="w-3/12 bg-gray-200 m-12 rounded-md">
@@ -119,6 +128,7 @@ function ChatBar() {
           </div>
           {/* <!-- Chat messages go here --> */}
           <div class="sticky bottom-0">
+            <TextToSpeechButton updateMessage={updateMessages} />
           </div>
         </div>
         <div class="bg-white pb-4">
