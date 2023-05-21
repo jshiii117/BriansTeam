@@ -1,7 +1,7 @@
 "use client";
 
-import VideoPlayer from "../../../components/VideoPlayer";
-import ChatBar from "../../../components/ChatBar";
+import VideoPlayer from "../../components/VideoPlayer";
+import ChatBar from "../../components/ChatBar";
 import { useState } from "react";
 import { oprahImage, oprahStartMessage, oprahVoice } from "./info";
 

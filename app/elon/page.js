@@ -1,9 +1,9 @@
 "use client";
 
-import VideoPlayer from "../../../components/VideoPlayer";
-import ChatBar from "../../../components/ChatBar";
-import NavBar from "../../../components/NavBar";
-import EndCallBTN from "../../../components/EndCallBTN";
+import VideoPlayer from "../../components/VideoPlayer";
+import ChatBar from "../../components/ChatBar";
+import NavBar from "../../components/NavBar";
+import EndCallBTN from "../../components/EndCallBTN";
 import { useState } from "react";
 import { elonImage, elonStartMessage, elonVoice } from "./info";
 import "./page.css";
