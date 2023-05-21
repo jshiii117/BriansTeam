@@ -27,11 +27,10 @@ export default function LandingPage(){
 
                     <div className='grayBar'></div>
 
-                    <a href='/'>
-
-                    <div className='chatNowBTN'>
-                        Chat Now
-                    </div>
+                    <a href='/selectionPage'>
+                        <div className='chatNowBTN'>
+                            Chat Now
+                        </div>
                     </a>
                 </div>
 
