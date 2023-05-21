@@ -14,8 +14,8 @@ const gptMessages = [
 ];
 const imageFile = "https://i.imgur.com/fhrwAgp.png";
 
-const getVideo = async () => {
-  const gptResponse = await postMessage();
+const getVideo = async (gptMessages) => {
+  const gptResponse = await postMessage(gptMessages);
   const videoId = await createVideo(gptResponse);
   console.log(`VideoId: ${videoId}`);
 
@@ -45,7 +45,7 @@ const getVideo = async () => {
   }
 };
 
-const postMessage = async () => {
+const postMessage = async ({ gptMessages }) => {
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       body: JSON.stringify({
@@ -56,7 +56,7 @@ const postMessage = async () => {
       headers: {
         "content-type": "application/json",
         Authorization:
-          "Bearer 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",
+          "Bearer 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",
       },
     });
     const result = await response.json();
@@ -99,7 +99,7 @@ const createVideo = async (text) => {
     if (response.ok) {
       console.log("CreateVideo");
       console.log(result);
-      const delay = () => new Promise((resolve) => setTimeout(resolve, 20000)); // Delay for 5000 milliseconds
+      const delay = () => new Promise((resolve) => setTimeout(resolve, 30000));
       await delay();
       return result.id;
     }

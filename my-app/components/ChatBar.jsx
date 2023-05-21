@@ -20,8 +20,10 @@ function ChatBar({ updateResult }) {
       console.log(currentMessage);
       const message = {
         role: "user",
-        context: currentMessage,
+        content: currentMessage,
       };
+      const newMessages = [...gptMessages, message];
+      postMessage(newMessages);
       setGptMessages([...gptMessages, message]);
       setCurrentMessage("");
       const result = await getVideo();
@@ -34,8 +36,10 @@ function ChatBar({ updateResult }) {
     console.log(user_input);
     const message = {
       role: "user",
-      context: user_input,
+      content: user_input,
     };
+    const newMessages = [...gptMessages, message];
+    postMessage(newMessages);
     setGptMessages([...gptMessages, message]);
   };
 
