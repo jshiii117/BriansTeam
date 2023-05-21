@@ -61,7 +61,7 @@ function ChatBar({ updateResult }) {
             })}
           </div>
           {/* <!-- Chat messages go here --> */}
-          <div class="sticky bottom-0">
+          <div className="sticky bottom-0">
             <TextToSpeechButton updateMessage={updateMessages} />
           </div>
         </div>
