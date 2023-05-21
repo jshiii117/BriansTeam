@@ -1,4 +1,5 @@
 import React from 'react'
+import './styling/ImageView.css'
 
 function ImageView() {
   return (

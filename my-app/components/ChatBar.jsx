@@ -55,7 +55,7 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
   // };
 
   return (
-    <div className="w-3/12 bg-gray-200 m-12 rounded-md">
+    <div className="w-4/12 bg-gray-200 m-12 rounded-lg">
       <div className="h-screen flex flex-col">
         <div className="flex flex-1 overflow-y-scroll max-h-[calc(100vh-8rem)] flex-col p-10">
           <div className="flex-grow items-center gap-3 pb-4">

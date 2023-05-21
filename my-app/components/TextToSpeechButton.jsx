@@ -59,4 +59,14 @@
 //     </div>
 //   );
 
-// }
+  return (
+    <div className="flex-col">
+      <button
+        onClick={() => setmicOn(!micOn)}
+      >
+        {micOn ? <img src="/micOn.png"></img> : <img src="/micOff.png"></img> }
+      </button>
+      <h1>{answer}</h1>
+    </div>
+  );
+}

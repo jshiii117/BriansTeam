@@ -1,0 +1,10 @@
+.container{
+    padding-left: 5%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.image{
+    min-width: 70%;
+}

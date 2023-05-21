@@ -1,0 +1,14 @@
+.navBar{
+    display: flex;
+    gap: 2%;
+    padding-left: 5%;
+    padding-top: 5%;
+    margin-bottom: 3%;
+    color: rgba(255, 255, 255, 1);
+    font-size: 30px;
+}
+
+.logo{
+    width: 5%;
+    height: 5%;
+}
