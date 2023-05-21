@@ -5,8 +5,9 @@ import ChatBubble from "./ChatBubble";
 import TextToSpeechButton from "./TextToSpeechButton";
 import { useState } from "react";
 import { BiMessage } from "react-icons/Bi";
+import { getVideo } from "../api";
 
-function ChatBar() {
+function ChatBar({ updateResult }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [currentMessages, setCurrentMessages] = useState([]);
 
@@ -14,7 +15,7 @@ function ChatBar() {
     setCurrentMessage(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (currentMessage !== "") {
       console.log(currentMessage);
       const message = {
@@ -24,6 +25,9 @@ function ChatBar() {
       };
       setCurrentMessages([...currentMessages, message]);
       setCurrentMessage("");
+      const result = await getVideo();
+      console.log(`Result: ${result}`);
+      updateResult(result);
     }
   };
 
@@ -39,7 +43,7 @@ function ChatBar() {
 
   return (
     <div className="w-3/12 bg-gray-200 m-12 rounded-md">
-      <div class="h-screen flex flex-col">
+      <div className="h-screen flex flex-col">
         <div className="flex flex-1 overflow-y-scroll max-h-[calc(100vh-8rem)] flex-col p-10">
           <div className="flex-grow items-center gap-3 pb-4">
             <div className="flex items-center gap-4">
@@ -131,17 +135,17 @@ function ChatBar() {
             <TextToSpeechButton updateMessage={updateMessages} />
           </div>
         </div>
-        <div class="bg-white pb-4">
-          <div class="flex">
+        <div className="bg-white pb-4">
+          <div className="flex">
             <input
               type="text"
               placeholder="Type your message..."
-              class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={currentMessage}
               onChange={handleInputChange}
             />
             <button
-              class="px-4 text-white bg-blue-500 rounded-r-md"
+              className="px-4 text-white bg-blue-500 rounded-r-md"
               onClick={handleSubmit}
             >
               Send
