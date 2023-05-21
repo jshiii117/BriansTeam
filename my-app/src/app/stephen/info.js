@@ -10,6 +10,7 @@ const stephenStartMessage = [
     role: "assistant",
     content: "I'm Stephen Hawking. Feel free to ask me anything!",
   },
+  { role: "assistant", content: "Let's chat!" },
 ];
 
 const stephenVoice = "en-US-RogerNeural";
