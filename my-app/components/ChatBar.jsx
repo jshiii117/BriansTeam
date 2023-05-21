@@ -33,14 +33,16 @@ function ChatBar({ updateResult }) {
   };
 
   const updateMessages = (user_input) => {
-    console.log(user_input);
-    const message = {
-      role: "user",
-      content: user_input,
-    };
-    const newMessages = [...gptMessages, message];
-    postMessage(newMessages);
-    setGptMessages([...gptMessages, message]);
+    if (user_input !== "") {
+      console.log(user_input);
+      const message = {
+        role: "user",
+        content: user_input,
+      };
+      const newMessages = [...gptMessages, message];
+      postMessage(newMessages);
+      setGptMessages([...gptMessages, message]);
+    }
   };
 
   return (
@@ -54,8 +56,8 @@ function ChatBar({ updateResult }) {
             </div>
             {/* @todo: fix styling of each ChatBubble */}
 
-            {gptMessages.map(({ role, context }) => {
-              return <ChatBubble user={role} text={context} />;
+            {gptMessages.map(({ role, content }) => {
+              return <ChatBubble user={role} text={content} />;
             })}
           </div>
           {/* <!-- Chat messages go here --> */}
