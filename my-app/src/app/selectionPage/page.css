@@ -1,0 +1,87 @@
+.container{
+    background-color: rgba(33, 36, 50, 1);
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.navBar{
+    display: flex;
+    gap: 2%;
+    padding-left: 4%;
+    padding-top: 4%;
+    margin-bottom: 3%;
+    color: rgba(255, 255, 255, 1);
+    font-size: 30px;
+}
+
+.logo{
+    width: 4%;
+    height: 4%;
+}
+
+.mainBody{
+    display: flex;
+}
+
+.leftImage,
+.middleImage,
+.rightImage{
+    width: 20vw;
+    height: 20vh;
+}
+
+.leftContainer,
+.middleContainer,
+.rightContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 80vh;
+    min-width: 33vw;
+
+}
+
+.leftTitle,
+.middleTitle,
+.rightTitle{
+    margin-top: 16vh;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.leftDescription,
+.middleDescription,
+.rightDescription{
+    color: rgba(255, 255, 255, 1);
+    margin: 2% 5% 0% 5%;
+}
+
+.grayBar{
+    width: 85%;
+    height: 5px;
+    background-color:rgba(120, 121, 128, 1);
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.leftChatBTN,
+.middleChatBTN,
+.rightChatBTN{
+    color: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(22, 115, 233, 1);
+    min-width: 70%;
+    height: 5vh;
+    border-radius: 10px;
+    margin-bottom: 1%;
+}
+
+.leftChatBTN:hover,
+.middleChatBTN:hover,
+.rightChatBTN:hover{
+    transform: scale(1.05);
+}

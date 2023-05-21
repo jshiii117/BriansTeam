@@ -1,0 +1,68 @@
+.container{
+    background-color: rgba(33, 36, 50, 1);
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.navBar{
+    display: flex;
+    gap: 2%;
+    padding: 4%;
+    color: rgba(255, 255, 255, 1);
+    font-size: 30px;
+}
+
+.logo{
+    width: 4%;
+    height: 4%;
+}
+
+.leftContainer{
+    color: rgba(255, 255, 255, 1);
+    padding: 4%;   
+}
+
+.mainBody{
+    margin-top: 3%;
+    display: flex;
+    gap: 6%;
+}
+
+.leftContainerTitle{
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 1%;
+}
+
+.grayBar{
+    width: 100%;
+    height: 5px;
+    background-color:rgba(120, 121, 128, 1);
+    margin-bottom: 3%;
+}
+
+.leftContainerText{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 3%;
+}
+
+.chatNowBTN{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(22, 115, 233, 1);
+    max-width: 100%;
+    height: 5vh;
+    border-radius: 10px;
+    margin-bottom: 1%;
+}
+
+.chatNowBTN:hover{
+    transform: scale(1.05);
+}
+
+.image{
+    max-width: 800px;
+    max-height: 800px;
+}
