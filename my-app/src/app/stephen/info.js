@@ -1,4 +1,4 @@
-const stephenImage = "https://i.imgur.com/olp8c3c.png";
+const stephenImage = "https://i.imgur.com/wpJ5W62.png";
 
 const stephenStartMessage = [
   {

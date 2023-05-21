@@ -6,7 +6,6 @@ import TextToSpeechButton from "./TextToSpeechButton";
 import { useState } from "react";
 import { BiMessage } from "react-icons/Bi";
 import { getVideo } from "../api/api";
-import { v4 as uuidv4 } from "uuid";
 
 function ChatBar({ updateResult, image, startMessage, voiceId }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -67,7 +66,7 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
 
             {gptMessages
               .map(({ role, content }) => {
-                return <ChatBubble key={uuidv4()} user={role} text={content} />;
+                return <ChatBubble user={role} text={content} />;
               })
               .slice(1)}
           </div>

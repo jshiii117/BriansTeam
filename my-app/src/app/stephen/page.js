@@ -2,8 +2,11 @@
 
 import VideoPlayer from "../../../components/VideoPlayer";
 import ChatBar from "../../../components/ChatBar";
+import NavBar from "../../../components/NavBar";
+import EndCallBTN from "../../../components/EndCallBTN";
 import { useState } from "react";
 import { stephenImage, stephenStartMessage, stephenVoice } from "./info";
+import './page.css'
 
 export default function Home() {
   const [video, setVideo] = useState("");
@@ -14,7 +17,13 @@ export default function Home() {
 
   return (
     <div className="flex h-screen overflow-y-hidden">
-      <VideoPlayer result={video} image={stephenImage} />
+      <div className="leftContainer">
+        <NavBar></NavBar>
+        <div className="innerContainer">
+          <VideoPlayer result={video} image={stephenImage}/>
+          <EndCallBTN></EndCallBTN>
+        </div>
+      </div>
       <ChatBar
         updateResult={handleSetVideo}
         image={stephenImage}
