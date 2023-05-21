@@ -51,7 +51,7 @@ export default function TextToSpeechButton({ updateMessage }) {
             : "w-full px-4 text-white bg-blue-500 rounded-md"
         }
       >
-        {micOn ? "Stop" : "Start"}
+        {micOn ? "Stop Mic" : "Start Mic"}
       </button>
       <h1>{answer}</h1>
     </div>
