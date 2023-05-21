@@ -4,7 +4,7 @@ import React from "react";
 import ChatBubble from "./ChatBubble";
 // import TextToSpeechButton from "./TextToSpeechButton";
 import { useState } from "react";
-import { BiMessage } from "react-icons/Bi";
+// import { BiMessage } from "react-icons/Bi";
 import { getVideo } from "../api/api";
 import { v4 as uuidv4 } from "uuid";
 
@@ -60,7 +60,7 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
         <div className="flex flex-1 overflow-y-scroll max-h-[calc(100vh-8rem)] flex-col p-10">
           <div className="flex-grow items-center gap-3 pb-4">
             <div className="flex items-center gap-4">
-              <BiMessage size={40} />
+              {/* <BiMessage size={40} /> */}
               <h1 className="font-bold">Chat</h1>
             </div>
             {/* @todo: fix styling of each ChatBubble */}
