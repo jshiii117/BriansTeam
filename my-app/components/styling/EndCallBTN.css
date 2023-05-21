@@ -1,0 +1,23 @@
+.EndCallBTNcontainer{
+    background-color: rgba(217, 83, 83, 1);
+    min-width: 40%;
+    min-height: 5%;
+
+    margin-left: 5%;
+    margin-top: 2%;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.EndCallBTNcontainer:hover{
+    transform: scale(1.05);
+}
+
+.endCallBTN{
+    max-width: 50px;
+    max-height: 50px;
+}
+

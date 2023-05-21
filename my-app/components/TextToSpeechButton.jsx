@@ -45,13 +45,8 @@ export default function TextToSpeechButton({ updateMessage }) {
     <div className="flex-col">
       <button
         onClick={() => setmicOn(!micOn)}
-        className={
-          micOn
-            ? "w-full px-4 text-white bg-red-500 rounded-md"
-            : "w-full px-4 text-white bg-blue-500 rounded-md"
-        }
       >
-        {micOn ? "Stop Mic" : "Start Mic"}
+        {micOn ? <img src="/micOn.png"></img> : <img src="/micOff.png"></img> }
       </button>
       <h1>{answer}</h1>
     </div>

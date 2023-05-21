@@ -2,12 +2,13 @@
 
 import React from "react";
 import ReactPlayer from "react-player/lazy";
+import './styling/VideoPlayer.css'
 
 function VideoPlayer({ result, image }) {
   return (
-    <div className="w-9/12 bg-red-300">
+    <div className="container">
       {result === "" ? (
-        <img src={image} alt="AI Character" width="650px" height="650px" />
+        <img src={image} alt="AI Character" className="image"/>
       ) : (
         <ReactPlayer url={result} width="650px" height="650px" playing />
       )}
