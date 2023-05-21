@@ -10,7 +10,7 @@ function VideoPlayer({ result, image }) {
       {result === "" ? (
         <img src={image} alt="AI Character" className="image"/>
       ) : (
-        <ReactPlayer url={result} width="650px" height="650px" playing />
+        <ReactPlayer url={result} max-width="300px" max-height="300px" playing />
       )}
     </div>
   );

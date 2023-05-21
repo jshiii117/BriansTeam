@@ -10,6 +10,7 @@ import { getVideo } from "../api/api";
 function ChatBar({ updateResult, image, startMessage, voiceId }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [gptMessages, setGptMessages] = useState(startMessage);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setCurrentMessage(e.target.value);
@@ -22,6 +23,8 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
         role: "user",
         content: currentMessage,
       };
+      setCurrentMessage("");
+      setIsLoading(!isLoading);
       const newMessages = [...gptMessages, message];
       setGptMessages([...gptMessages, message]);
       const result = await getVideo(newMessages, image, voiceId);
@@ -30,7 +33,7 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
       console.log(updatedMessages);
       setGptMessages([...newMessages, updatedMessages]);
       updateResult(video);
-      setCurrentMessage("");
+      setIsLoading(!isLoading);
     }
   };
 
@@ -53,8 +56,15 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+      console.log("Enter key pressed");
+    }
+  };
+
   return (
-    <div className="w-4/12 bg-gray-200 m-12 rounded-lg">
+    <div className="w-4/12 bg-gray-200 m-12 rounded-md">
       <div className="h-screen flex flex-col">
         <div className="flex flex-1 overflow-y-scroll max-h-[calc(100vh-8rem)] flex-col p-10">
           <div className="flex-grow items-center gap-3 pb-4">
@@ -83,6 +93,8 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
               className="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={currentMessage}
               onChange={handleInputChange}
+              onKeyDown={handleKeyPress}
+              disabled={isLoading}
             />
             <button
               className="px-4 text-white bg-blue-500 rounded-r-md"
