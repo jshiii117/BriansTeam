@@ -5,7 +5,7 @@ import ChatBar from "../../components/ChatBar";
 
 export default function Home() {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen overflow-y-hidden">
       <VideoPlayer />
       <ChatBar />
     </div>
