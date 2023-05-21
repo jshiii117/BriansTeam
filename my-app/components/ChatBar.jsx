@@ -2,7 +2,7 @@
 
 import React from "react";
 import ChatBubble from "./ChatBubble";
-import TextToSpeechButton from "./TextToSpeechButton";
+// import TextToSpeechButton from "./TextToSpeechButton";
 import { useState } from "react";
 import { BiMessage } from "react-icons/Bi";
 import { getVideo } from "../api/api";
@@ -35,24 +35,24 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
     }
   };
 
-  const updateMessages = async (user_input) => {
-    if (user_input !== "") {
-      console.log(user_input);
-      const message = {
-        role: "user",
-        content: user_input,
-      };
-      const newMessages = [...gptMessages, message];
-      setGptMessages([...gptMessages, message]);
-      const result = await getVideo(newMessages, image, voiceId);
-      const video = result.video;
-      const updatedMessages = result.gptMessages[0].message;
-      console.log(updatedMessages);
-      setGptMessages([...newMessages, updatedMessages]);
-      updateResult(video);
-      setCurrentMessage("");
-    }
-  };
+  // const updateMessages = async (user_input) => {
+  //   if (user_input !== "") {
+  //     console.log(user_input);
+  //     const message = {
+  //       role: "user",
+  //       content: user_input,
+  //     };
+  //     const newMessages = [...gptMessages, message];
+  //     setGptMessages([...gptMessages, message]);
+  //     const result = await getVideo(newMessages, image, voiceId);
+  //     const video = result.video;
+  //     const updatedMessages = result.gptMessages[0].message;
+  //     console.log(updatedMessages);
+  //     setGptMessages([...newMessages, updatedMessages]);
+  //     updateResult(video);
+  //     setCurrentMessage("");
+  //   }
+  // };
 
   return (
     <div className="w-3/12 bg-gray-200 m-12 rounded-md">
@@ -72,9 +72,9 @@ function ChatBar({ updateResult, image, startMessage, voiceId }) {
               .slice(1)}
           </div>
           {/* <!-- Chat messages go here --> */}
-          <div className="sticky bottom-0">
+          {/* <div className="sticky bottom-0">
             <TextToSpeechButton updateMessage={updateMessages} />
-          </div>
+          </div> */}
         </div>
         <div className="bg-white pb-4">
           <div className="flex">

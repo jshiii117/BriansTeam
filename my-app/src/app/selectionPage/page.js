@@ -1,7 +1,8 @@
 import "./page.css";
-import { elonImage } from "../elon/info";
 import { oprahImage } from "../oprah/info";
 import { stephenImage } from "../stephen/info";
+
+const elonImage = "https://i.imgur.com/fhrwAgp.png";
 
 export default function SelectionPage() {
   return (
