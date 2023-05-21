@@ -9,7 +9,7 @@ import { getVideo } from "../api/api";
 
 function ChatBar({ updateResult }) {
   const [currentMessage, setCurrentMessage] = useState("");
-  const [currentMessages, setCurrentMessages] = useState([]);
+  const [gptMessages, setGptMessages] = useState([]);
 
   const handleInputChange = (e) => {
     setCurrentMessage(e.target.value);
@@ -19,11 +19,10 @@ function ChatBar({ updateResult }) {
     if (currentMessage !== "") {
       console.log(currentMessage);
       const message = {
-        user: true,
-        id: currentMessages.length,
-        text: currentMessage,
+        role: "user",
+        context: currentMessage,
       };
-      setCurrentMessages([...currentMessages, message]);
+      setGptMessages([...gptMessages, message]);
       setCurrentMessage("");
       const result = await getVideo();
       console.log(`Result: ${result}`);
@@ -34,11 +33,10 @@ function ChatBar({ updateResult }) {
   const updateMessages = (user_input) => {
     console.log(user_input);
     const message = {
-      user: true,
-      id: currentMessages.length,
-      text: user_input,
+      role: "user",
+      context: user_input,
     };
-    setCurrentMessages([...currentMessages, message]);
+    setGptMessages([...gptMessages, message]);
   };
 
   return (
@@ -52,8 +50,8 @@ function ChatBar({ updateResult }) {
             </div>
             {/* @todo: fix styling of each ChatBubble */}
 
-            {currentMessages.map(({ user, text }) => {
-              return <ChatBubble user={user} text={text} />;
+            {gptMessages.map(({ role, context }) => {
+              return <ChatBubble user={role} text={context} />;
             })}
           </div>
           {/* <!-- Chat messages go here --> */}
